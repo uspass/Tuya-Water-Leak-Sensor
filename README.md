@@ -19,7 +19,7 @@ This micro-controller takes care of:
 The event sequence is as follows:
 When an event appears, water over the terminals (or I suspect battery low, never tried that), 
 EFM powers on ESP by opening Q3. 
-Probably sends also a reset (f).
+Probably sends also a reset (6).
 ESP gets somehow the event type (water leak or battery low), 
 connects to WiFi, establish the communication with the cloud and sends info to the cloud. 
 It's unclear if it uses GPIO5 to read the event type or to send something like task done.
