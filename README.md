@@ -25,3 +25,4 @@ connects to WiFi, establish the communication with the cloud and sends info to t
 It's unclear if it uses GPIO5 to read the event type or to send something like task done.
 Anyway, after that, EFM cuts down ESP power and looks for the next event.
 All that takes like 3-5 seconds.
+ 
