@@ -13,7 +13,8 @@ This micro-controller takes care of:
   1. Reset ESP (EXT_RSTB) writing p1.5.
   1. ESP power writing p1.7. Power control to save battery.
   1. GPIO5 linked to p0.0.
-  In order to save power, ESP (U1) is powered through Q3 which is normally closed (VM0=0).
+  
+In order to save power, ESP (U1) is powered through Q3 which is normally closed (VM0=0).
 
 The event sequence is as follows:
 
@@ -74,7 +75,7 @@ Rule2 ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON 
 
 The next rule creates a device in Home Assistant:
 
-Rule3 ON system#boot DO publish2 homeassistant/binary_sensor/%macaddr%_contact/config {"name":"Water Leak","unique_id":"%topic%_%macaddr%","device_class":"moisture","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/STATUS"} ENDON ON system#boot DO publish2 homeassistant/sensor/%macaddr%_battery/config {"name":"Water Leak Battery","unique_id":"%topic%_Battery_%macaddr%","icon":"hass:battery","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/BATT"} ENDON
+Rule3 ON system#boot DO publish2 homeassistant/binary_sensor/%macaddr%_moisture/config {"name":"Water Leak","unique_id":"%topic%_%macaddr%","device_class":"moisture","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/STATUS"} ENDON ON system#boot DO publish2 homeassistant/sensor/%macaddr%_battery/config {"name":"Water Leak Battery","unique_id":"%topic%_Battery_%macaddr%","icon":"hass:battery","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/BATT"} ENDON
 
 Backlog Rule1 1; Rule2 1; Rule3 1
 
