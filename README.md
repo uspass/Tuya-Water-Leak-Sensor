@@ -2,6 +2,8 @@
 MCU Product ID: {"P":"SmFKLTOcGHbPQvmh","v":"1.1.0"} 
 Wifi 8266ex 
 
+![20190119_102556x](https://user-images.githubusercontent.com/42880649/120639804-6dac6180-c47a-11eb-85a8-bf8dbfecacb2.jpg)
+
 Basically the sensor works like this:
 The MCU (U3) is powered by the battery through Q2 which acts like a diode (with a low drop-off voltage) protecting it from reverse polarity.
 This micro-controller takes care of:
