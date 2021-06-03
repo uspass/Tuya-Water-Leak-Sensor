@@ -15,6 +15,7 @@ This micro-controller takes care of:
   In order to save power, ESP (U1) is powered through Q3 which is normally closed (VM0=0).
 
 The event sequence is as follows:
+
 When an event appears, water over the terminals (or I suspect battery low, never tried that), 
 MCU powers on ESP by opening Q3. 
 ESP gets the event type (water leak or battery status), 
