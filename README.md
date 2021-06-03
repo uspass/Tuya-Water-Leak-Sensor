@@ -1,4 +1,4 @@
-# Tuya Water Leak Sensor SKU-S2502 Convert to Tasmota
+# Tuya Water Leak Sensor SKU-S2502 Converted to Tasmota
 MCU Product ID: {"P":"SmFKLTOcGHbPQvmh","v":"1.1.0"} 
 Wifi 8266ex 
 
@@ -32,19 +32,19 @@ From now on, every single change in Tasmota should be done by quickly, with your
 
 I assume you have worked before with Tasmota.
 
-Set the wifi credentials.
+#### Set the wifi credentials.
 
-Set the Mqtt config.
+#### Set the Mqtt config.
 
 The following programming sequence is:
 
-Module 54
+#### Module 54
 
-Backlog SetOption1 1; SetOption65 1; SetOption66 0; SetOption36 0; SetOption19 1; SwitchMode 1
+#### Backlog SetOption1 1; SetOption65 1; SetOption66 0; SetOption36 0; SetOption19 1; SwitchMode 1
 
-TuyaMCU 51,21
+#### TuyaMCU 51,21
 
-Backlog DeviceName Water_Leak; FriendlyName1 Water_Leak
+#### Backlog DeviceName Water_Leak; FriendlyName1 Water_Leak
 
 
 Tuya CmndData:
@@ -68,15 +68,15 @@ Last 10 (Rule2):
 6604000103 Battery Low
 
 
-Rule1 ON TuyaReceived#Data$<55AA0005000A6501000101 DO publish2 stat/%topic%/STATUS ON ENDON ON TuyaReceived#Data$<55AA0005000A6501000100 DO publish2 stat/%topic%/STATUS OFF ENDON
+#### Rule1 ON TuyaReceived#Data$<55AA0005000A6501000101 DO publish2 stat/%topic%/STATUS ON ENDON ON TuyaReceived#Data$<55AA0005000A6501000100 DO publish2 stat/%topic%/STATUS OFF ENDON
 
-Rule2 ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON ON TuyaReceived#Data$|6604000102 DO publish2 stat/%topic%/BATT Medium ENDON ON TuyaReceived#Data$|6604000103 DO publish2 stat/%topic%/BATT Low ENDON
+#### Rule2 ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON ON TuyaReceived#Data$|6604000102 DO publish2 stat/%topic%/BATT Medium ENDON ON TuyaReceived#Data$|6604000103 DO publish2 stat/%topic%/BATT Low ENDON
 
 
 The next rule creates a device in Home Assistant:
 
-Rule3 ON system#boot DO publish2 homeassistant/binary_sensor/%macaddr%_moisture/config {"name":"Water Leak","unique_id":"%topic%_%macaddr%","device_class":"moisture","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/STATUS"} ENDON ON system#boot DO publish2 homeassistant/sensor/%macaddr%_battery/config {"name":"Water Leak Battery","unique_id":"%topic%_Battery_%macaddr%","icon":"hass:battery","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/BATT"} ENDON
+#### Rule3 ON system#boot DO publish2 homeassistant/binary_sensor/%macaddr%_moisture/config {"name":"Water Leak","unique_id":"%topic%_%macaddr%","device_class":"moisture","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/STATUS"} ENDON ON system#boot DO publish2 homeassistant/sensor/%macaddr%_battery/config {"name":"Water Leak Battery","unique_id":"%topic%_Battery_%macaddr%","icon":"hass:battery","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/BATT"} ENDON
 
-Backlog Rule1 1; Rule2 1; Rule3 1
+#### Backlog Rule1 1; Rule2 1; Rule3 1
 
 
