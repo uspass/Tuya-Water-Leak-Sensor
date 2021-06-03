@@ -1,4 +1,4 @@
-# Tuya Water Leak Sensor SKU-S2502
+# Tuya Water Leak Sensor SKU-S2502 Convert to Tasmota
 MCU Product ID: {"P":"SmFKLTOcGHbPQvmh","v":"1.1.0"} 
 Wifi 8266ex 
 
