@@ -1,5 +1,5 @@
 # Tuya Water Leak Sensor SKU-S2502 Converted to Tasmota
-MCU Product ID: {"P":"SmFKLTOcGHbPQvmh","v":"1.x.0"} 
+MCU Product ID: {"P":"SmFKLTOcGHbPQvmh","v":"1.x.x"} 
 Wifi 8266ex 
 
 ![20190119_102556x](https://user-images.githubusercontent.com/42880649/120639804-6dac6180-c47a-11eb-85a8-bf8dbfecacb2.jpg)
@@ -72,7 +72,7 @@ Last 10 (Rule2):
 
 #### Rule1 ON TuyaReceived#Data$|6501000101 DO publish2 stat/%topic%/STATUS ON ENDON ON TuyaReceived#Data$|6501000100 DO publish2 stat/%topic%/STATUS OFF ENDON
 
-#### Rule2 ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON ON TuyaReceived#Data$|6604000102 DO publish2 stat/%topic%/BATT Medium ENDON ON TuyaReceived#Data$|6604000103 DO publish2 stat/%topic%/BATT Low ENDON
+#### Rule2 ON TuyaReceived#Data$|6604000100 DO publish2 stat/%topic%/BATT Full ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON ON TuyaReceived#Data$|6604000102 DO publish2 stat/%topic%/BATT Medium ENDON ON TuyaReceived#Data$|6604000103 DO publish2 stat/%topic%/BATT Low ENDON
 
 
 The next rule creates a device in Home Assistant:
