@@ -70,7 +70,7 @@ Last 10 (Rule2):
 6604000103 Battery Low
 
 
-#### Rule1 ON TuyaReceived#Data$<55AA0005000A6501000101 DO publish2 stat/%topic%/STATUS ON ENDON ON TuyaReceived#Data$<55AA0005000A6501000100 DO publish2 stat/%topic%/STATUS OFF ENDON
+#### Rule1 ON TuyaReceived#Data$|6501000101 DO publish2 stat/%topic%/STATUS ON ENDON ON TuyaReceived#Data$|6501000100 DO publish2 stat/%topic%/STATUS OFF ENDON
 
 #### Rule2 ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON ON TuyaReceived#Data$|6604000102 DO publish2 stat/%topic%/BATT Medium ENDON ON TuyaReceived#Data$|6604000103 DO publish2 stat/%topic%/BATT Low ENDON
 
