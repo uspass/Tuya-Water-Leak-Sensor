@@ -63,6 +63,8 @@ First 10 (Rule1):
 
 Last 10 (Rule2):
 
+6604000100 Battery Full
+
 6604000101 Battery High
 
 6604000102 Battery Medium
