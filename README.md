@@ -28,40 +28,48 @@ After that, MCU cuts down ESP power and looks for the next event.
 
 All that takes like 3-5 seconds.
 
-Use Tx Rx GND VMO(+3V) and GPIO0 to GND to flash Tasmota.
 
-From now on, every single change in Tasmota should be done by quickly, with your fingers wet, touch the water leak tips.
+Flashing:
+
+Use Tx Rx GND VMO(+3V) and GPIO0 to GND to flash Tasmota. See Tasmota docs for USB-serial device.
+
+From now on, every single change in Tasmota should be done touching the water leak tips quickly with your fingers wet .
 
 I assume you have worked before with Tasmota.
+
+
+Programming:
 
 #### Set the wifi credentials.
 
 #### Set the Mqtt config.
 
-The following programming sequence is:
+Console in the following programming sequence:
 
 #### Module 54
 
-#### Backlog SetOption1 1; SetOption65 1; SetOption66 0; SetOption36 0; SetOption19 1; SwitchMode 1
-
 #### TuyaMCU 51,21
+
+#### Backlog SetOption1 1; SetOption65 1; SetOption66 0; SetOption36 0; SetOption19 0; SwitchMode 1
+
+In next command change 'Water_Leak' name with whatever name you want for the sensor
 
 #### Backlog DeviceName Water_Leak; FriendlyName1 Water_Leak
 
-
+Info for Rule1 and Rule2:
 Tuya CmndData:
 
 65010001006604000101
 
 That translates to:
 
-First 10 (Rule1): 
+Look for 650100010 (Rule1): 
 
 6501000101 ON (Wet)
 
 6501000100 OFF (Dry)
 
-Last 10 (Rule2):
+Look for 660400010 (Rule2):
 
 6604000100 Battery Full
 
@@ -76,11 +84,16 @@ Last 10 (Rule2):
 
 #### Rule2 ON TuyaReceived#Data$|6604000100 DO publish2 stat/%topic%/BATT Full ON TuyaReceived#Data$|6604000101 DO publish2 stat/%topic%/BATT High ENDON ON TuyaReceived#Data$|6604000102 DO publish2 stat/%topic%/BATT Medium ENDON ON TuyaReceived#Data$|6604000103 DO publish2 stat/%topic%/BATT Low ENDON
 
-
-The next rule creates a device in Home Assistant:
+The next rule creates a device in Home Assistant. Change 'Water Leak' name with whatever name you want. If you have more than one sensor make sure you have different names for each sensor:
 
 #### Rule3 ON system#boot DO publish2 homeassistant/binary_sensor/%macaddr%_moisture/config {"name":"Water Leak","unique_id":"%topic%_%macaddr%","device_class":"moisture","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/STATUS"} ENDON ON system#boot DO publish2 homeassistant/sensor/%macaddr%_battery/config {"name":"Water Leak Battery","unique_id":"%topic%_Battery_%macaddr%","icon":"hass:battery","device":{"identifiers":["%macaddr%"],"name":"Water Leak","manufacturer":"Tasmota","model":"SKU-S2502"},"state_topic":"%topic%/stat/BATT"} ENDON
 
+Activate rules
+
 #### Backlog Rule1 1; Rule2 1; Rule3 1
+
+Important!!!!!
+
+DON'T USE TASMOTA VERSION 9.5. IT HAS A BUG. IT WON'T WORK!
 
 
