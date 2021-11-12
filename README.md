@@ -57,6 +57,7 @@ In next command change 'Water_Leak' name with whatever name you want for the sen
 #### Backlog DeviceName Water_Leak; FriendlyName1 Water_Leak
 
 Info for Rule1 and Rule2:
+
 Tuya CmndData:
 
 65010001006604000101
